@@ -5,7 +5,7 @@ This is an all-in-one engineering journal that includes:
 1. Home page 
 2. Big Picture Tab
   a. copy/paste and/or drag and drop your whiteboard images here
-3. C.A,R Tab
+3. C.A.R Tab
   a. input all your CAR statements here
   b. Logs and records the statement, displays in reverse chronological order
 4. Today's Tix Tab
