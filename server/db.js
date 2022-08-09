@@ -1,7 +1,6 @@
 const mongoose = require ('mongoose');
 
-//1. use mongoose to establish connection to the database
-mongoose.connect ('mongodb://localhost/jurnl');
+mongoose.connect ('mongodb://localhost:27017/jurnl');
 
 const db = mongoose.connection;
 
@@ -13,26 +12,27 @@ db.once('open', () => {
   console.log('connected to MongoDB');
 });
 
-//2. set up schemas and models
-
 const resumeBulletSchema = new mongoose.Schema ({
   entry: {
     type: String,
   }
 })
 
-const ResumeBullet = mongoose.model ('ResumeBullet', resumeBulletSchema);
+const ResumeBullet = mongoose.model('ResumeBullet', resumeBulletSchema);
 
-//3. export model functions
 module.exports = {
   save(bulletPoint) {
-    console.log(bulletPoint, 'in models BULLETPOINT')
-    let addEntry = new ResumeBullet({
+    let addEntry = {
       entry: bulletPoint,
-    });
-    console.log (addEntry)
+    };
     return ResumeBullet.create(addEntry);
   },
 
-  //add a delete function
+  get() {
+    return ResumeBullet.find({});
+  },
+
+  delete(bulletPoint) {
+    return ResumeBullet.deleteOne ({entry: bulletPoint})
+  }
 }

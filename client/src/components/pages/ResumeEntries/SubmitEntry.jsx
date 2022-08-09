@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function SubmitEntry () {
+function SubmitEntry ({ savedBullets, setSavedBullets }) {
 
   const [bulletPoint, setBulletPoint] = useState('');
   const [validBullet, setValidBullet] = useState(false);
@@ -9,6 +9,7 @@ function SubmitEntry () {
   const [validSynonym, setValidSynonym] = useState(false);
   const [mostSimilar, setMostSimilar] = useState('');
   const [synonym, setSynonym] = useState('');
+  const [synonymButtonClick, setSynonymButtonClick] = useState(false);
 
   const handleBulletPoint = (event) => {
     setBulletPoint(event.target.value);
@@ -21,11 +22,17 @@ function SubmitEntry () {
 
   const handleSubmitPoint = (event) => {
     event.preventDefault();
-    console.log (bulletPoint, 'point to be added in resume');
     axios.post ('/jurnl', {
         bulletPoint: bulletPoint
       }
     )
+      .then (() =>
+        axios.get('/previousBullets')
+          .then ((results) => {
+            setSavedBullets(results.data)
+          })
+          .catch ((err) => console.log(err))
+      )
   }
 
   const handleFindSynonym = (event) => {
@@ -40,6 +47,7 @@ function SubmitEntry () {
   const handleSubmitSynonym = (event) => {
     event.preventDefault();
     console.log (findSynonym, 'synonym to look for')
+    setSynonymButtonClick(true);
     axios.get(`https://words.bighugelabs.com/api/2/1d9f92b5eeece63d9767999633bd7f59/${findSynonym}/json`)
       .then ((results) => {
         console.log (results.data.verb)
@@ -70,12 +78,12 @@ function SubmitEntry () {
         {console.log (mostSimilar, 'here are the words')}
       </div>
       <div className= 'similar-and-synonym-list'>
-        {mostSimilar.length > 0 ?
+        {(mostSimilar.length > 0 || !synonymButtonClick)?
           <div>
-            <h1 className= 'most-similar-title'>How About These? : </h1>
-            <h1>{mostSimilar}</h1>
+            <div className= 'synonym-results'>How About These? : </div>
+            <div className= 'synonym-results'>{mostSimilar}</div>
           </div>
-          : <h1>Sorry, no synonyms found...</h1>}
+          : <div className= 'synonym-results'>Sorry, no synonyms found...</div>}
       </div>
     </div>
   )

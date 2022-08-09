@@ -13,6 +13,10 @@ app.use(cors());
 
 app.post('/jurnl', controllerResume.save)
 
+app.get('/previousBullets', controllerResume.get)
+
+app.delete('/deleteBullet', controllerResume.delete)
+
 app.listen(3000,()=>{
   console.log('listening on port 3000');
 })

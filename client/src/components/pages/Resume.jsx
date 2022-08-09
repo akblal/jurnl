@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SubmitEntry from '../pages/ResumeEntries/SubmitEntry.jsx';
 import PreviousEntries from '../pages/ResumeEntries/PreviousEntries.jsx';
 
 function Resume () {
-  return (
 
+  const [savedBullets, setSavedBullets] = useState([])
+
+  return (
     <div>
-      <SubmitEntry />
-      <PreviousEntries />
+      <SubmitEntry savedBullets= {savedBullets} setSavedBullets= {setSavedBullets}/>
+      <PreviousEntries savedBullets= {savedBullets} setSavedBullets= {setSavedBullets}/>
     </div>
   )
 }

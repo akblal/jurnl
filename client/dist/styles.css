@@ -68,3 +68,7 @@ body {
 .most-similar {
   margin-top: 0;
 }
+
+.synonym-results {
+  font-size: 1rem;
+}
