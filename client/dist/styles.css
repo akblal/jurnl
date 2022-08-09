@@ -44,17 +44,20 @@ body {
   padding: 1rem;
 }
 
+.thesaurus-entry-container,
 .submit-entry-container {
   display: flex;
   justify-content: space-evenly;
 }
 
+.submit-synonym-title,
 .submit-entry-title {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.synonym-text-field,
 .resume-text-field {
   font-size: 1.5rem;
 }
