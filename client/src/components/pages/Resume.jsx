@@ -7,7 +7,6 @@ function Resume () {
   return (
 
     <div>
-      <h1>Resume Ideas</h1>
       <SubmitEntry />
       <PreviousEntries />
     </div>

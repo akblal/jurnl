@@ -61,3 +61,10 @@ body {
 .resume-text-field {
   font-size: 1.5rem;
 }
+
+.most-similar-title {
+  margin-bottom: 0;
+}
+.most-similar {
+  margin-top: 0;
+}
