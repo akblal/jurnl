@@ -1,7 +1,3 @@
-/*
-Add CSS
- */
-
 body {
   margin: 0;
 }
@@ -41,5 +37,24 @@ body {
   font-size: 5rem;
 }
 .list-title {
+  font-size: 1.5rem;
+}
+
+.pages {
+  padding: 1rem;
+}
+
+.submit-entry-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.submit-entry-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resume-text-field {
   font-size: 1.5rem;
 }
