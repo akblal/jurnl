@@ -72,3 +72,23 @@ body {
 .synonym-results {
   font-size: 1rem;
 }
+
+.picture-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+
+}
+
+.home-pictures-quotes {
+  border-radius: 20px;
+  width: 20vw;
+  height: 20vh;
+}
+
+.home-pictures-quotes:hover {
+  width: 20.5vw;
+  height: 20.5vh;
+  cursor: pointer;
+  border-style: outset;
+}
