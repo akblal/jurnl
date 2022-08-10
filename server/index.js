@@ -18,7 +18,10 @@ app.delete('/deleteBullet', controllerResume.deleteBullet);
 
 //ROUTES for TICKETS
 app.post('/addTicket', controllerTicket.saveTicket)
+app.post('/addCompletedTicket', controllerTicket.addCompletedTask)
 app.get('/getTickets', controllerTicket.getTicket)
+app.get('/getCompletedTicket', controllerTicket.getCompletedTicket)
+app.delete('/deleteActiveTicket', controllerTicket.deleteActiveTicket)
 
 app.listen(3000,()=>{
   console.log('listening on port 3000');

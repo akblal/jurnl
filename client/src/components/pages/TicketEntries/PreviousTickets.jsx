@@ -3,33 +3,77 @@ import axios from 'axios';
 
 function PreviousTickets ( {submittedTickets, setSubmittedTickets} ) {
 
-  // const [submittedTickets, setSubmittedTickets] = useState([]);
+  const [completedTickets, setCompletedTickets] = useState([]);
 
   useEffect(() => {
     axios.get('/getTickets')
-      .then ((result) => {
-        console.log (result.data, 'in get')
-        console.log (typeof result.data, 'in get')
-        setSubmittedTickets(result.data)
+      .then (result => setSubmittedTickets(result.data))
+      .then (() => {
+        axios.get('getCompletedTicket')
+          .then(result => setCompletedTickets(result.data))
       })
       .catch (err => console.log (err));
   }, [])
 
   const handleFinished = (event) => {
     console.log(event.target.value);
+    const ticketID = event.target.value;
+    axios.delete('/deleteActiveTicket', { data: {
+      _id: ticketID,
+    }})
+      .then (() => {
+        let completedTask;
+        for (let i = 0; i < submittedTickets.length; i++) {
+          if (submittedTickets[i]._id === ticketID) {
+            completedTask = submittedTickets[i]
+          }
+        }
+        axios.post('/addCompletedTicket', {
+          taskName: completedTask.taskName,
+          timeNumber: completedTask.timeNumber,
+          timePeriod: completedTask.timePeriod,
+          stage: completedTask.stage,
+        })
+          .then(() => {
+            axios.get('getCompletedTicket')
+              .then (result => setCompletedTickets(result.data))
+          })
+          .catch((err) => console.log(err))
+
+      })
+      .then(() => {
+        axios.get('/getTickets')
+          .then ((result) => {
+            setSubmittedTickets(result.data)
+          })
+          .catch (err => console.log (err));
+      })
+
   }
 
   return (
-    <div>
-      <h1>Previous Tickets</h1>
-      {submittedTickets.map(ticket => {
-        return (
-          <div>
-            <h1>{ticket.taskName} {ticket.timeNumber} {ticket.timePeriod} {ticket.stage}</h1>
-            <button value= {ticket._id} onClick= {handleFinished}>Finished!</button>
-          </div>
-        )
-      })}
+    <div className= 'overall-ticket-container'>
+      <div className = 'active-tickets-container'>
+        {submittedTickets.length > 0 ? <h1>Active Tickets</h1> : null}
+        {submittedTickets.map(ticket => {
+          return (
+            <div>
+              <span>{ticket.taskName} {ticket.timeNumber} {ticket.timePeriod} {ticket.stage}</span>
+              <button value= {ticket._id} onClick= {handleFinished}>Finished!</button>
+            </div>
+          )
+        })}
+      </div>
+      <div className= 'completed-tickets-container'>
+        {completedTickets.length > 0 ? <h1>Completed Tickets</h1> : null}
+        {completedTickets.map(ticket => {
+          return (
+            <div>
+              <span>{ticket.taskName} {ticket.timeNumber} {ticket.timePeriod} {ticket.stage}</span>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

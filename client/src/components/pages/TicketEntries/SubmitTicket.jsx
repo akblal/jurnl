@@ -38,10 +38,8 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
         stage: stage,
       })
         .then (() => {
-          console.log('just finsihed posting')
           axios.get('/getTickets')
             .then ((result) => {
-              console.log (result.data, 'newly added daa')
               setSubmittedTickets(result.data)
             })
       .catch (err => console.log (err));

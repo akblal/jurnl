@@ -29,6 +29,15 @@ const ticketSchema = new mongoose.Schema({
 
 const Ticket = mongoose.model('Ticket', ticketSchema);
 
+const completedTicketSchema = new mongoose.Schema({
+  taskName: String,
+  timeNumber: String,
+  timePeriod: String,
+  stage: String,
+})
+
+const CompletedTicket = mongoose.model('CompletedTicket', completedTicketSchema);
+
 module.exports = {
   saveBullet(bulletPoint) {
     let addEntry = {
@@ -57,6 +66,23 @@ module.exports = {
 
   getTickets() {
     return Ticket.find({});
-  }
+  },
 
+  deleteActiveTicket(ticketID) {
+    return Ticket.deleteOne ({_id: ticketID});
+  },
+
+  addCompletedTask(ticket) {
+    let addTicket = {
+      taskName: ticket.taskName,
+      timeNumber: ticket.timeNumber,
+      timePeriod: ticket.timePeriod,
+      stage: ticket.stage,
+    }
+    return CompletedTicket.create(addTicket)
+  },
+
+  getCompletedTicket() {
+    return CompletedTicket.find({});
+  }
 }
