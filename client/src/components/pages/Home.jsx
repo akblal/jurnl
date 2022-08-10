@@ -6,13 +6,17 @@ function Home ({ headerDisplay, setHeaderDisplay }) {
   const kanyeURL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgb6b4JIa7gG0djbM_QmxLQa4n1nCyAPfcWw&usqp=CAU';
   const funnyURL = 'https://www.letseatcake.com/wp-content/uploads/2021/07/Funny-Memes-44.jpg';
 
+  const kanyeName = 'Ye';
+
   const [username, setUsernamce] = useState('Brandon Hsu');
-  const [quoteAuthor, setQuoteAuthor] = useState('');
-  const [quoteBody, setQuoteBody] = useState('');
+  const [inspirationalAuthor, setInspirationalAuthor] = useState('');
+  const [inspirationalQuote, setInspirationalQuote] = useState('');
+  const [kanyeQuote, setKanyeQuote] = useState('');
+  const [joke, setJoke] = useState('');
+
 
 
   const handleClickInspirational = (event) => {
-    console.log('inspirational')
     setHeaderDisplay(1);
 
     axios.get("https://type.fit/api/quotes")
@@ -20,42 +24,41 @@ function Home ({ headerDisplay, setHeaderDisplay }) {
         const randomNumber = Math.floor(Math.random() * (response.data.length - 1))
         const quoteOfDay = response.data[randomNumber]
 
-        setQuoteBody(quoteOfDay.text)
+        setInspirationalQuote(quoteOfDay.text)
         if (quoteOfDay.author) {
-          setQuoteAuthor(quoteOfDay.author);
+          setInspirationalAuthor(quoteOfDay.author);
         } else {
-          setQuoteAuthor('Unknown')
+          setInspirationalAuthor('Unknown')
         }
       })
   }
 
   const handleClickKanye = (event) => {
-    console.log('Kanye')
     setHeaderDisplay(2);
+
+    axios.get('https://api.kanye.rest/')
+      .then(result => setKanyeQuote(result.data.quote))
   }
 
   const handleClickFunny = (event) => {
-    console.log('Funny')
     setHeaderDisplay(3);
+    axios.get('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,racist,sexist,explicit&type=single')
+      .then(result => setJoke(result.data.joke))
   }
 
   let displayOption;
   switch (headerDisplay) {
     case 0:
-      console.log('should be welcome sign');
-      displayOption = <h1>Welcome {username}</h1>
+      displayOption = <h1 className= 'main-header-style'>Welcome {username}</h1>
       break;
     case 1:
-      console.log('should be inspirational');
-      displayOption = <h1>"{quoteBody}" - {quoteAuthor}</h1>
+      displayOption = <h1 className= 'main-header-style'>"{inspirationalQuote}" - {inspirationalAuthor}</h1>
       break;
     case 2:
-      console.log('should be kanye');
-      displayOption = <h1>"Kanye Quote" - Ye</h1>
+      displayOption = <h1 className= 'main-header-style'>"{kanyeQuote}" - {kanyeName}</h1>
       break;
     case 3:
-      console.log('should be funny');
-      displayOption = <h1>"Funny Quote" - Author</h1>
+      displayOption = <h1 className= 'main-header-style'>{joke}</h1>
       break;
   }
 
@@ -65,7 +68,9 @@ function Home ({ headerDisplay, setHeaderDisplay }) {
 
   return (
     <div>
-      {displayOption}
+      <div className= 'main-header-container'>
+        {displayOption}
+      </div>
       <div className= 'picture-container'>
         <img src={scenicURL} alt= 'Scenic/Inspirational' onClick= {handleClickInspirational} className= 'home-pictures-quotes'/>
         <img src={kanyeURL} alt= 'Kanye' onClick={handleClickKanye} className= 'home-pictures-quotes'/>
