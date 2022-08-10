@@ -40,6 +40,8 @@ function SubmitTicket () {
       let tempArray = tickets.slice();
       tempArray.push(tempObject)
       setTickets(tempArray)
+    } else {
+      alert ('Not all required fields completed!')
     }
   }
 
