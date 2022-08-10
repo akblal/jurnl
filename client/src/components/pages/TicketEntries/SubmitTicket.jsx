@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-function SubmitTicket () {
+function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
 
-  const [tickets, setTickets] = useState([]);
   const [taskName, setTaskName]= useState('');
   const [timeNumber, setTimeNumber] = useState('Time');
   const [timePeriod, setTimePeriod] = useState('Period');
@@ -31,15 +31,21 @@ function SubmitTicket () {
 
   const handleEasy = (event) => {
     if ((taskName.length > 0) && (timeNumber != 'Time') && (timePeriod != 'Period') && (stage != 'Stage')) {
-      const tempObject = {
+      axios.post ('/addTicket', {
         taskName: taskName,
         timeNumber: timeNumber,
         timePeriod: timePeriod,
         stage: stage,
-      };
-      let tempArray = tickets.slice();
-      tempArray.push(tempObject)
-      setTickets(tempArray)
+      })
+        .then (() => {
+          console.log('just finsihed posting')
+          axios.get('/getTickets')
+            .then ((result) => {
+              console.log (result.data, 'newly added daa')
+              setSubmittedTickets(result.data)
+            })
+      .catch (err => console.log (err));
+        })
     } else {
       alert ('Not all required fields completed!')
     }
@@ -47,10 +53,9 @@ function SubmitTicket () {
 
   return (
     <div>
-    {console.log(tickets)}
       <div>
         <h1>What Shall I Do Today?</h1>
-        {tickets.length === 0 ? <h2>Apparently, nothing...</h2> : null}
+        {submittedTickets.length === 0 ? <h2>Apparently, nothing...</h2> : null}
       </div>
       <div className= 'ticket-container'>
         <div className= 'ticket-form'>

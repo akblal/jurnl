@@ -42,6 +42,21 @@ module.exports = {
   },
 
   deleteBullet(bulletPoint) {
-    return ResumeBullet.deleteOne ({entry: bulletPoint})
+    return ResumeBullet.deleteOne ({entry: bulletPoint});
+  },
+
+  saveTicket(ticket) {
+    let addTicket = {
+      taskName: ticket.taskName,
+      timeNumber: ticket.timeNumber,
+      timePeriod: ticket.timePeriod,
+      stage: ticket.stage,
+    }
+    return Ticket.create(addTicket);
+  },
+
+  getTickets() {
+    return Ticket.find({});
   }
+
 }
