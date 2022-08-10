@@ -20,6 +20,15 @@ const resumeBulletSchema = new mongoose.Schema ({
 
 const ResumeBullet = mongoose.model('ResumeBullet', resumeBulletSchema);
 
+const ticketSchema = new mongoose.Schema({
+  taskName: String,
+  timeNumber: String,
+  timePeriod: String,
+  stage: String,
+})
+
+const Ticket = mongoose.model('Ticket', ticketSchema);
+
 module.exports = {
   saveBullet(bulletPoint) {
     let addEntry = {
