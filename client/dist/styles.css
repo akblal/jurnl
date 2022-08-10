@@ -76,6 +76,11 @@ body {
 .picture-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.picture-container {
+  display: flex;
+  justify-content: space-evenly;
   flex-wrap: nowrap;
 
 }
@@ -91,4 +96,15 @@ body {
   height: 20.5vh;
   cursor: pointer;
   border-style: outset;
+}
+
+.main-header-container {
+  display: flex;
+  justify-content: center;
+}
+
+.wall-of-awesomeness-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 30px;
 }

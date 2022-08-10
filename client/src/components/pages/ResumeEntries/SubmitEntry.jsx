@@ -9,7 +9,7 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
   const [validSynonym, setValidSynonym] = useState(false);
   const [mostSimilar, setMostSimilar] = useState('');
   const [synonym, setSynonym] = useState('');
-  const [synonymButtonClick, setSynonymButtonClick] = useState(false);
+  const [synonymButtonClick, setSynonymButtonClick] = useState(0);
 
   const handleBulletPoint = (event) => {
     setBulletPoint(event.target.value);
@@ -46,11 +46,9 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
 
   const handleSubmitSynonym = (event) => {
     event.preventDefault();
-    console.log (findSynonym, 'synonym to look for')
-    setSynonymButtonClick(true);
+    setSynonymButtonClick(1);
     axios.get(`https://words.bighugelabs.com/api/2/1d9f92b5eeece63d9767999633bd7f59/${findSynonym}/json`)
       .then ((results) => {
-        console.log (results.data.verb)
         let arraySynonym = results.data.verb.syn;
         if (arraySynonym.length > 0) {
           if (arraySynonym.length > 5) {
@@ -78,12 +76,17 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
         {console.log (mostSimilar, 'here are the words')}
       </div>
       <div className= 'similar-and-synonym-list'>
-        {(mostSimilar.length > 0 || !synonymButtonClick)?
+        {(mostSimilar.length > 0) ?
           <div>
             <div className= 'synonym-results'>How About These? : </div>
             <div className= 'synonym-results'>{mostSimilar}</div>
           </div>
-          : <div className= 'synonym-results'>Sorry, no synonyms found...</div>}
+          : null}
+          {(mostSimilar.length === 0 && synonymButtonClick > 0) ?
+            <div>
+              <div className= 'synonym-results'>Sorry, there were no results... </div>
+            </div>
+            : null}
       </div>
     </div>
   )

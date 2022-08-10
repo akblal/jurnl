@@ -22,12 +22,12 @@ function PreviousEntries ({ savedBullets, setSavedBullets }) {
 
   return (
     <div>
-      <h2>Previous Entries</h2>
+      {savedBullets.length > 0 ? <h2>Great Wall of Awesomeness</h2> : null}
       {savedBullets.map((bulletPoint) => {
         return (
-          <div>
-            <h1>{bulletPoint}</h1>
-            <button value= {bulletPoint} onClick= {handleDelete}>click me!</button>
+          <div className = 'wall-of-awesomeness-container'>
+            <span>{bulletPoint}</span>
+            <button value= {bulletPoint} onClick= {handleDelete}>Not that Impressive</button>
           </div>
         )
       })}
