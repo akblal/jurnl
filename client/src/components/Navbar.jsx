@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-function Navbar () {
+function Navbar ({ setHeaderDisplay }) {
+
+  const handleClickJurnl = (event) => {
+    setHeaderDisplay(0);
+  }
+
   return (
       <nav className = 'nav'>
-        <Link to= '/' className= 'site-title'>Jurnl</Link>
+        <Link to= '/' className= 'site-title' onClick={handleClickJurnl} >Jurnl</Link>
         <ul>
           <CustomLink to= '/bigpicture' className= 'list-title'>Big Picture</CustomLink>
           <CustomLink to= '/car' className= 'list-title'>C.A.R</CustomLink>

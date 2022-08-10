@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -15,12 +15,14 @@ const root = createRoot(container);
 
 function App (props) {
 
+  const [headerDisplay, setHeaderDisplay] = useState(0);
+
   return (
     <div>
-      <Navbar />
+      <Navbar setHeaderDisplay= {setHeaderDisplay}/>
       <div className= 'pages'>
         <Routes>
-          <Route path= '/' element= {<Home />} />
+          <Route path= '/' element= {<Home headerDisplay= {headerDisplay} setHeaderDisplay= {setHeaderDisplay}/>} />
           <Route path= '/bigpicture' element= {<BigPicture />} />
           <Route path= '/car' element= {<CAR />} />
           <Route path= '/ticket' element= {<Ticket />} />
