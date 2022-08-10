@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(express.static('client/dist'));
 app.use(cors());
 
-app.post('/jurnl', controllerResume.save)
+app.post('/addBullet', controllerResume.saveBullet)
 
-app.get('/previousBullets', controllerResume.get)
+app.get('/previousBullets', controllerResume.getBullet)
 
-app.delete('/deleteBullet', controllerResume.delete)
+app.delete('/deleteBullet', controllerResume.deleteBullet)
 
 app.listen(3000,()=>{
   console.log('listening on port 3000');

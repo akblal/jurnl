@@ -1,15 +1,15 @@
 const model = require ('../db.js')
 
 module.exports = {
-  save(req, res) {
+  saveBullet(req, res) {
     const bulletPoint = req.body.bulletPoint;
-    model.save(bulletPoint)
+    model.saveBullet(bulletPoint)
       .then((results) => res.sendStatus(201))
       .catch((err) => res.sendStatus(500))
   },
 
-  get(req, res) {
-    model.get()
+  getBullet(req, res) {
+    model.getBullet()
       .then (results => {
         let entries = []
         results.forEach (item => {
@@ -20,8 +20,8 @@ module.exports = {
       .catch (err => res.sendStatus(500))
   },
 
-  delete(req,res) {
-    model.delete(req.body.entry)
+  deleteBullet(req,res) {
+    model.deleteBullet(req.body.entry)
       .then(results => res.sendStatus(201))
       .catch (err => res.sendStatus(500))
   }

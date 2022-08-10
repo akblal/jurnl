@@ -21,18 +21,18 @@ const resumeBulletSchema = new mongoose.Schema ({
 const ResumeBullet = mongoose.model('ResumeBullet', resumeBulletSchema);
 
 module.exports = {
-  save(bulletPoint) {
+  saveBullet(bulletPoint) {
     let addEntry = {
       entry: bulletPoint,
     };
     return ResumeBullet.create(addEntry);
   },
 
-  get() {
+  getBullet() {
     return ResumeBullet.find({});
   },
 
-  delete(bulletPoint) {
+  deleteBullet(bulletPoint) {
     return ResumeBullet.deleteOne ({entry: bulletPoint})
   }
 }

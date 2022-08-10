@@ -22,7 +22,7 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
 
   const handleSubmitPoint = (event) => {
     event.preventDefault();
-    axios.post ('/jurnl', {
+    axios.post ('/addBullet', {
         bulletPoint: bulletPoint
       }
     )
@@ -93,4 +93,3 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
 }
 
 export default SubmitEntry;
-
