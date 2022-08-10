@@ -8,6 +8,8 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
   const [timePeriod, setTimePeriod] = useState('Period');
   const [stage, setStage] = useState('Stage');
 
+  const [completedProject, setCompletedProject] = useState(true);
+
   const arrayTimeNumber = ['1', '2', '3', '4', '5', '6'];
   const arrayTimePeriod = ['hour(s)', 'day(s)', 'week(s)', 'month(s)'];
   const arrayStage = ['Plan', 'Code', 'Test', 'Release', 'Deploy', 'Metrics/Validation', 'Operate'];
@@ -49,6 +51,16 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
     }
   }
 
+  const handleCompletedProject = (event) => {
+    setCompletedProject(false);
+  }
+
+  const handleNewProject = (event) => {
+    setCompletedProject(true);
+  }
+
+
+
   return (
     <div>
       <div>
@@ -81,6 +93,11 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
                 return <option value= {stage}>{stage}</option>
               })}
             </select>
+          </div>
+          <div>
+              {completedProject ? <button onClick= {handleCompletedProject}> Completed Project! </button> :
+              <button onClick= {handleNewProject}> Click to Start a New Project </button>
+            }
           </div>
         </div>
         <div>

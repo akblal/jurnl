@@ -38,7 +38,6 @@ function PreviousTickets ( {submittedTickets, setSubmittedTickets} ) {
               .then (result => setCompletedTickets(result.data))
           })
           .catch((err) => console.log(err))
-
       })
       .then(() => {
         axios.get('/getTickets')
@@ -47,7 +46,6 @@ function PreviousTickets ( {submittedTickets, setSubmittedTickets} ) {
           })
           .catch (err => console.log (err));
       })
-
   }
 
   return (
