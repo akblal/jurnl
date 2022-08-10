@@ -140,3 +140,9 @@ body {
   align-items: center;
   flex-grow: 1;
 }
+
+.overall-ticket-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

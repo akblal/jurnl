@@ -16,7 +16,6 @@ function PreviousTickets ( {submittedTickets, setSubmittedTickets} ) {
   }, [])
 
   const handleFinished = (event) => {
-    console.log(event.target.value);
     const ticketID = event.target.value;
     axios.delete('/deleteActiveTicket', { data: {
       _id: ticketID,
@@ -54,7 +53,7 @@ function PreviousTickets ( {submittedTickets, setSubmittedTickets} ) {
   return (
     <div className= 'overall-ticket-container'>
       <div className = 'active-tickets-container'>
-        {submittedTickets.length > 0 ? <h1>Active Tickets</h1> : null}
+        {submittedTickets.length > 0 ? <h1>Active Tickets</h1> : <h1>Woop Woop! All Done</h1>}
         {submittedTickets.map(ticket => {
           return (
             <div>

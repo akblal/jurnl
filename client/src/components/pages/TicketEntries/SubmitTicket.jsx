@@ -53,7 +53,7 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
     <div>
       <div>
         <h1>What Shall I Do Today?</h1>
-        {submittedTickets.length === 0 ? <h2>Apparently, nothing...</h2> : null}
+        {submittedTickets.length === 0 ? <h2>Apparently, nothing...</h2> : <h2>Let's Get to Work</h2>}
       </div>
       <div className= 'ticket-container'>
         <div className= 'ticket-form'>
