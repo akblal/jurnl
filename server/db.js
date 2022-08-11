@@ -136,7 +136,6 @@ module.exports = {
   },
 
   deleteAllBullets(){
-    console.log('we gonna delete all the bullets')
     return ResumeBullet.deleteMany({})
   }
 }
