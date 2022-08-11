@@ -18,17 +18,23 @@ app.get('/previousBullets', controllerResume.getBullet);
 app.delete('/deleteBullet', controllerResume.deleteBullet);
 
 //ROUTES for TICKETS
-app.post('/addTicket', controllerTicket.saveTicket)
-app.post('/addCompletedTicket', controllerTicket.addCompletedTask)
-app.get('/getTickets', controllerTicket.getTicket)
-app.get('/getCompletedTicket', controllerTicket.getCompletedTicket)
-app.delete('/deleteActiveTicket', controllerTicket.deleteActiveTicket)
+app.post('/addTicket', controllerTicket.saveTicket);
+app.post('/addCompletedTicket', controllerTicket.addCompletedTask);
+app.get('/getTickets', controllerTicket.getTicket);
+app.get('/getCompletedTicket', controllerTicket.getCompletedTicket);
+app.delete('/deleteActiveTicket', controllerTicket.deleteActiveTicket);
 
 //ROUTE for COMPLETED PROJECT
-app.post('/completedProject', controllerProject.addProject)
+app.post('/completedProject', controllerProject.addProject);
 
 //ROUTE to DELETE ALL TASKS
-app.delete('/deleteAllTickets', controllerProject.deleteAllTickets)
+app.delete('/deleteAllTickets', controllerProject.deleteAllTickets);
+
+//ROUTE to SAVE RESUME BULLETS
+app.post('/saveResumeFile', controllerResume.saveFile);
+
+//ROUTE to DELETE ALL RESUME BULLETS
+app.delete('/deleteAllBullets', controllerResume.deleteAllBullets)
 
 app.listen(3000,()=>{
   console.log('listening on port 3000');

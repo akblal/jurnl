@@ -10,6 +10,7 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
   const [mostSimilar, setMostSimilar] = useState('');
   const [synonym, setSynonym] = useState('');
   const [synonymButtonClick, setSynonymButtonClick] = useState(0);
+  const [documentNameResume, setDocumentNameResume] = useState('');
 
   const handleBulletPoint = (event) => {
     setBulletPoint(event.target.value);
@@ -62,6 +63,26 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
       .catch ((err) => setMostSimilar(''))
   }
 
+  const handleFileName = (event) => {
+    setDocumentNameResume(event.target.value)
+  }
+
+  const handleSave = (event) => {
+    console.log(documentNameResume);
+    console.log(savedBullets, 'saved bullets')
+    axios.post('/saveResumeFile', {
+      documentName: documentNameResume,
+      bulletPoints: savedBullets,
+    })
+      .then(() => {
+        axios.delete('/deleteAllBullets')
+      })
+      .then(() => {
+        setSavedBullets([])
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <div>
       <h2 className= 'submit-entry-title'>List Your Spectacular Achievement</h2>
@@ -87,6 +108,10 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
               <div className= 'synonym-results'>Sorry, there were no results... </div>
             </div>
             : null}
+      </div>
+      <div className= 'save-resume-bullet-container'>
+        <input value= {documentNameResume} onChange= {handleFileName} placeholder= 'Save all Bullets into Document' size= '50'></input>
+        <button onClick={handleSave}>Save into File</button>
       </div>
     </div>
   )

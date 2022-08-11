@@ -24,5 +24,18 @@ module.exports = {
     model.deleteBullet(req.body.entry)
       .then(results => res.sendStatus(201))
       .catch (err => res.sendStatus(500))
+  },
+
+  saveFile(req, res) {
+    const documentInfo = req.body;
+    model.saveResumeFile(documentInfo)
+      .then(results => res.sendStatus(201))
+      .catch (err => res.sendStatus(500))
+  },
+
+  deleteAllBullets(req, res) {
+    model.deleteAllBullets()
+      .then(results => res.sendStatus(201))
+      .catch (err => res.sendStatus(500))
   }
 }

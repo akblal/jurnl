@@ -83,8 +83,6 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets,
     console.log(projectName);
   }
 
-
-
   return (
     <div>
       <div>

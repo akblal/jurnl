@@ -56,6 +56,13 @@ const projectSchema = new mongoose.Schema({
 
 const Project = mongoose.model('Project', projectSchema);
 
+const resumeFileSchema = new mongoose.Schema({
+  documentName: String,
+  bulletPoints: [String],
+})
+
+const ResumeFile = mongoose.model('ResumeFile', resumeFileSchema);
+
 module.exports = {
   saveBullet(bulletPoint) {
     let addEntry = {
@@ -110,7 +117,6 @@ module.exports = {
       activeTickets: allTickets.activeTickets,
       completedTickets: allTickets.completedTickets,
     };
-    console.log (addEntry)
     return Project.create(addEntry);
   },
 
@@ -119,5 +125,18 @@ module.exports = {
       .then (() => {
         return CompletedTicket.deleteMany({})
       })
+  },
+
+  saveResumeFile(documentInfo) {
+    let addEntry = {
+      documentName: documentInfo.documentName,
+      bulletPoints: documentInfo.bulletPoints,
+    };
+    return ResumeFile.create(addEntry);
+  },
+
+  deleteAllBullets(){
+    console.log('we gonna delete all the bullets')
+    return ResumeBullet.deleteMany({})
   }
 }
