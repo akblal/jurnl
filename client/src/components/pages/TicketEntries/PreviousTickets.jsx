@@ -52,9 +52,15 @@ function PreviousTickets ({submittedTickets, setSubmittedTickets, completedTicke
         {submittedTickets.length > 0 ? <h1>Active Tickets</h1> : <h1>Woop! All Done</h1>}
         {submittedTickets.map(ticket => {
           return (
-            <div>
-              <span>{ticket.taskName} {ticket.timeNumber} {ticket.timePeriod} {ticket.stage}</span>
-              <button value= {ticket._id} onClick= {handleFinished}>Finished!</button>
+            <div className= 'active-tickets-entry-container'>
+              <div className= 'active-tickets-entry'>
+                <div>Task: {ticket.taskName} </div>
+                <div>Time: {ticket.timeNumber} {ticket.timePeriod}</div>
+                <div>Stage: {ticket.stage}</div>
+              </div>
+              <div className= 'finished-active-task-button'>
+                <button value= {ticket._id} onClick= {handleFinished}>Finished!</button>
+              </div>
             </div>
           )
         })}
@@ -63,8 +69,10 @@ function PreviousTickets ({submittedTickets, setSubmittedTickets, completedTicke
         {completedTickets.length >= 0 ? <h1>Completed Tickets</h1> : null}
         {completedTickets.map(ticket => {
           return (
-            <div>
-              <span>{ticket.taskName} {ticket.timeNumber} {ticket.timePeriod} {ticket.stage}</span>
+            <div className= 'completed-tickets-entry'>
+              <div>Task: {ticket.taskName} </div>
+              <div>Time: {ticket.timeNumber} {ticket.timePeriod}</div>
+              <div>Stage: {ticket.stage}</div>
             </div>
           )
         })}

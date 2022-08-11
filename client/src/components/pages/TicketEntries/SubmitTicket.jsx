@@ -123,7 +123,7 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets,
           <div>
             <input value= {projectName} onChange= {handleProjectName} placeholder= 'Save the Project As...' size= '40' className= 'save-project-input'></input>
             {completedProject ? <button onClick= {handleCompletedProject} className= 'complete-project-button'> Completed Project! </button> :
-            <button onClick= {handleNewProject}> Click to Start a New Project </button>
+            <button onClick= {handleNewProject} className= 'complete-project-button'> Click to Start a New Project </button>
             }
           </div>
         </div>
