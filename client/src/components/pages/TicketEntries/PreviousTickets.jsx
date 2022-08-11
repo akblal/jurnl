@@ -58,9 +58,7 @@ function PreviousTickets ({submittedTickets, setSubmittedTickets, completedTicke
                 <div>Time: {ticket.timeNumber} {ticket.timePeriod}</div>
                 <div>Stage: {ticket.stage}</div>
               </div>
-
               <button value= {ticket._id} onClick= {handleFinished} className= 'finished-active-task-button'>Finished!</button>
-
             </div>
           )
         })}

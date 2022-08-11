@@ -22,7 +22,7 @@ function Navbar ({ setHeaderDisplay }) {
 }
 
 function CustomLink ({ to, children, ...props }) {
-  const resolvedPth = useResolvedPath(to)
+  const resolvedPath = useResolvedPath(to)
   return (
     <li>
       <Link to={to} {...props}>{children}</Link>

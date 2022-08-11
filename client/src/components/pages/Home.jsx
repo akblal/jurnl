@@ -17,7 +17,6 @@ function Home ({ headerDisplay, setHeaderDisplay }) {
 
   const handleClickInspirational = (event) => {
     setHeaderDisplay(1);
-
     axios.get("https://type.fit/api/quotes")
       .then((response) => {
         const randomNumber = Math.floor(Math.random() * (response.data.length - 1))
@@ -50,7 +49,6 @@ function Home ({ headerDisplay, setHeaderDisplay }) {
   let displayOption;
   switch (headerDisplay) {
     case 0:
-      // displayOption = <h1 className= 'main-header-style'>Welcome, {username}</h1>
       console.log('home')
       break;
     case 1:
