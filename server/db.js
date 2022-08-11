@@ -38,6 +38,24 @@ const completedTicketSchema = new mongoose.Schema({
 
 const CompletedTicket = mongoose.model('CompletedTicket', completedTicketSchema);
 
+const projectSchema = new mongoose.Schema({
+  projectName: String,
+  activeTickets: [{
+    taskName: String,
+    timeNumber: String,
+    timePeriod: String,
+    stage: String,
+  }],
+  completedTickets: [{
+    taskName: String,
+    timeNumber: String,
+    timePeriod: String,
+    stage: String,
+  }],
+})
+
+const Project = mongoose.model('Project', projectSchema);
+
 module.exports = {
   saveBullet(bulletPoint) {
     let addEntry = {
@@ -84,5 +102,22 @@ module.exports = {
 
   getCompletedTicket() {
     return CompletedTicket.find({});
+  },
+
+  addProject(allTickets) {
+    let addEntry = {
+      projectName: allTickets.projectName,
+      activeTickets: allTickets.activeTickets,
+      completedTickets: allTickets.completedTickets,
+    };
+    console.log (addEntry)
+    return Project.create(addEntry);
+  },
+
+  deleteAllTickets() {
+    return Ticket.deleteMany({})
+      .then (() => {
+        return CompletedTicket.deleteMany({})
+      })
   }
 }

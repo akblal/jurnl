@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
+function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets, setCompletedTickets}) {
 
   const [taskName, setTaskName]= useState('');
   const [timeNumber, setTimeNumber] = useState('Time');
   const [timePeriod, setTimePeriod] = useState('Period');
   const [stage, setStage] = useState('Stage');
-
   const [completedProject, setCompletedProject] = useState(true);
+  const [projectName, setProjectName] = useState('');
 
   const arrayTimeNumber = ['1', '2', '3', '4', '5', '6'];
   const arrayTimePeriod = ['hour(s)', 'day(s)', 'week(s)', 'month(s)'];
@@ -51,12 +51,36 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
     }
   }
 
+  const handleProjectName = (event) => {
+    setProjectName(event.target.value);
+  }
+
   const handleCompletedProject = (event) => {
-    setCompletedProject(false);
+    if (projectName.length) {
+      setCompletedProject(false);
+      console.log (submittedTickets, 'to do tix');
+      console.log (completedTickets, 'completed tix');
+      axios.post('/completedProject', {
+        projectName: projectName,
+        activeTickets: submittedTickets,
+        completedTickets: completedTickets,
+      })
+        .then(() => {
+          axios.delete('/deleteAllTickets')
+            .then(() => {
+              setCompletedTickets([]);
+              setSubmittedTickets([]);
+            })
+            .catch(err => console.log(err))
+        })
+    } else {
+      alert ('Input a Valid Project Name');
+    }
   }
 
   const handleNewProject = (event) => {
     setCompletedProject(true);
+    console.log(projectName);
   }
 
 
@@ -95,6 +119,7 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets}) {
             </select>
           </div>
           <div>
+              <input value= {projectName} onChange= {handleProjectName} placeholder= 'Save the Project As...'></input>
               {completedProject ? <button onClick= {handleCompletedProject}> Completed Project! </button> :
               <button onClick= {handleNewProject}> Click to Start a New Project </button>
             }

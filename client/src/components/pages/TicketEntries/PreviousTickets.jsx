@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PreviousTickets ( {submittedTickets, setSubmittedTickets} ) {
-
-  const [completedTickets, setCompletedTickets] = useState([]);
+function PreviousTickets ({submittedTickets, setSubmittedTickets, completedTickets, setCompletedTickets}) {
 
   useEffect(() => {
     axios.get('/getTickets')
