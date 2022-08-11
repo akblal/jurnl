@@ -1,3 +1,7 @@
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 body {
   margin: 0;
 }
@@ -9,6 +13,7 @@ body {
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
+  margin-left: 2vw;
 }
 
 .nav ul {
@@ -29,7 +34,7 @@ body {
 }
 
 .nav li:hover {
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -42,6 +47,17 @@ body {
 
 .pages {
   padding: 1rem;
+}
+
+.welcome-banner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.welcome-title {
+  font-family: 'Silkscreen', cursive;
+  font-size: 5em;
 }
 
 .thesaurus-entry-container,
@@ -83,7 +99,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: nowrap;
-
+  margin-bottom: 8vh;
 }
 
 .home-pictures-quotes {
@@ -102,6 +118,8 @@ body {
 .main-header-container {
   display: flex;
   justify-content: center;
+  margin-left: 10vw;
+  margin-right: 8vw;
 }
 
 .wall-of-awesomeness-container {
@@ -119,7 +137,7 @@ body {
 }
 
 .easy-button {
-  height: 20vw;
+  height: 15vw;
   width: auto;
   border-radius: 50%;
 }
@@ -132,6 +150,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 2rem;
 }
 
 .ticket-form {
@@ -145,4 +164,52 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.task-name-ticket-form {
+  margin-bottom: 5vh;
+}
+
+.wall-of-awesomeness-container {
+  margin-bottom: 5vh;
+}
+
+.time-period-drop-down,
+.stage-drop-down {
+  margin-bottom: 5vh;
+  font-size: 1.7rem;
+}
+
+
+.drop-down {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 20px;
+}
+
+.ticket-text-field {
+  border-radius: 20px;
+  padding-left: 0.5rem;
+}
+
+.easy-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.save-project-input {
+  border-radius: 20px;
+  font-size: 1.5rem;
+  padding-top: 0.3rem;
+  padding-left: 0.3rem;
+}
+
+.complete-project-button {
+  font-size: 1.3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  border-radius: 20px;
 }

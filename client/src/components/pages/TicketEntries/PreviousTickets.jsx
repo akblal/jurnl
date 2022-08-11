@@ -49,7 +49,7 @@ function PreviousTickets ({submittedTickets, setSubmittedTickets, completedTicke
   return (
     <div className= 'overall-ticket-container'>
       <div className = 'active-tickets-container'>
-        {submittedTickets.length > 0 ? <h1>Active Tickets</h1> : <h1>Woop Woop! All Done</h1>}
+        {submittedTickets.length > 0 ? <h1>Active Tickets</h1> : <h1>Woop! All Done</h1>}
         {submittedTickets.map(ticket => {
           return (
             <div>
@@ -60,7 +60,7 @@ function PreviousTickets ({submittedTickets, setSubmittedTickets, completedTicke
         })}
       </div>
       <div className= 'completed-tickets-container'>
-        {completedTickets.length > 0 ? <h1>Completed Tickets</h1> : null}
+        {completedTickets.length >= 0 ? <h1>Completed Tickets</h1> : null}
         {completedTickets.map(ticket => {
           return (
             <div>

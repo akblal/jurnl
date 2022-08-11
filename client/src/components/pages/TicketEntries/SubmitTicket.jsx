@@ -94,13 +94,13 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets,
             <input value= {taskName} onChange= {handleTaskName} placeholder= 'What to do...' size= "50" className= 'ticket-text-field'></input>
           </div>
           <div className= 'time-period-drop-down'>
-            <select onChange= {handleNumber}>
+            <select onChange= {handleNumber} className= 'drop-down'>
               <option selected value = 'Time'>Time</option>
               {arrayTimeNumber.map(time => {
                 return <option value= {time}>{time}</option>
               })}
             </select>
-            <select onChange= {handlePeriod}>
+            <select onChange= {handlePeriod} className= 'drop-down'>
               <option selected value = 'Period'>Period</option>
               {arrayTimePeriod.map(period => {
                 return <option value= {period}>{period}</option>
@@ -108,22 +108,24 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets,
             </select>
           </div>
           <div className= 'stage-drop-down'>
-            <select onChange= {handleStage}>
+            <select onChange= {handleStage} className= 'drop-down'>
               <option selected value= 'Stage'>Stage</option>
               {arrayStage.map(stage => {
                 return <option value= {stage}>{stage}</option>
               })}
             </select>
           </div>
-          <div>
-              <input value= {projectName} onChange= {handleProjectName} placeholder= 'Save the Project As...'></input>
-              {completedProject ? <button onClick= {handleCompletedProject}> Completed Project! </button> :
-              <button onClick= {handleNewProject}> Click to Start a New Project </button>
-            }
-          </div>
         </div>
         <div>
-          <img src= {easyURL} alt= 'Easy Button' onClick= {handleEasy} className= 'easy-button' />
+          <div className= 'easy-button-container'>
+            <img src= {easyURL} alt= 'Easy Button' onClick= {handleEasy} className= 'easy-button' />
+          </div>
+          <div>
+            <input value= {projectName} onChange= {handleProjectName} placeholder= 'Save the Project As...' size= '40' className= 'save-project-input'></input>
+            {completedProject ? <button onClick= {handleCompletedProject} className= 'complete-project-button'> Completed Project! </button> :
+            <button onClick= {handleNewProject}> Click to Start a New Project </button>
+            }
+          </div>
         </div>
       </div>
     </div>

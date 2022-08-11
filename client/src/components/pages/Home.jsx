@@ -47,37 +47,38 @@ function Home ({ headerDisplay, setHeaderDisplay }) {
     console.log('did i click twice?')
   }
 
-
   let displayOption;
   switch (headerDisplay) {
     case 0:
-      displayOption = <h1 className= 'main-header-style'>Welcome, {username}</h1>
+      // displayOption = <h1 className= 'main-header-style'>Welcome, {username}</h1>
       console.log('home')
       break;
     case 1:
-      displayOption = <h1 className= 'main-header-style'>"{inspirationalQuote}" - {inspirationalAuthor}</h1>
+      displayOption = <h2 className= 'main-header-style'>"{inspirationalQuote}" - {inspirationalAuthor}</h2>
       console.log('inspirational')
       break;
     case 2:
-      displayOption = <h1 className= 'main-header-style'>"{kanyeQuote}" - {kanyeName}</h1>
+      displayOption = <h2 className= 'main-header-style'>"{kanyeQuote}" - {kanyeName}</h2>
       console.log('kanye')
       break;
     case 3:
-      displayOption = <h1 className= 'main-header-style'>{joke}</h1>
+      displayOption = <h2 className= 'main-header-style'>{joke}</h2>
       console.log('joke')
       break;
   }
 
-
   return (
     <div>
-      <div className= 'main-header-container'>
-        {displayOption}
+      <div className= 'welcome-banner'>
+        <h1 className= 'welcome-title'>Welcome, {username}</h1>
       </div>
       <div className= 'picture-container'>
         <img src={scenicURL} alt= 'Scenic/Inspirational' onClick= {handleClickInspirational} className= 'home-pictures-quotes'/>
         <img src={kanyeURL} alt= 'Kanye' onClick={handleClickKanye} className= 'home-pictures-quotes'/>
         <img src={funnyURL} alt= 'Funny' onClick={handleClickFunny} className= 'home-pictures-quotes'/>
+      </div>
+      <div className= 'main-header-container'>
+        {displayOption}
       </div>
     </div>
   )
