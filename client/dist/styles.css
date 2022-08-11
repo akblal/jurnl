@@ -66,6 +66,10 @@ body {
   justify-content: space-evenly;
 }
 
+.submit-entry-container {
+  margin-bottom: 5rem;
+}
+
 .submit-synonym-title,
 .submit-entry-title {
   display: flex;
@@ -87,7 +91,12 @@ body {
 }
 
 .synonym-results {
-  font-size: 1rem;
+  margin-left: 3rem;
+}
+
+.synonym-results-top-line{
+  margin-top: 1.5rem;
+  margin-left: 3rem;
 }
 
 .picture-container {
@@ -157,7 +166,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 1;
+  justify-content: space-around;
 }
 
 .overall-ticket-container {
@@ -179,7 +188,6 @@ body {
   margin-bottom: 5vh;
   font-size: 1.7rem;
 }
-
 
 .drop-down {
   padding-top: 0.5rem;
@@ -204,6 +212,7 @@ body {
   font-size: 1.5rem;
   padding-top: 0.3rem;
   padding-left: 0.3rem;
+  margin-right: 0.5rem;
 }
 
 .complete-project-button {
@@ -214,18 +223,28 @@ body {
   border-radius: 20px;
 }
 
+.complete-project-button:hover{
+  border-style: inset;
+}
+
 .active-tickets-entry-container{
   display: flex;
   flex-direction: row;
   border-style: solid;
   border-radius: 20px;
-
 }
 
 .finished-active-task-button {
   display: flex;
   align-content: center;
   justify-content: right;
+  border-radius: 15px;
+  flex-grow: 5;
+  height: 25px;
+}
+
+.finished-active-task-button:hover {
+  border-style: inset;
 }
 
 .active-tickets-entry,
@@ -237,4 +256,54 @@ body {
 .completed-tickets-entry {
   border-style: solid;
   border-radius: 20px;
+}
+
+.overall-resume-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.resume-thesaurus-input {
+  margin-right: 2rem;
+}
+
+.wall-of-awesomeness-overall-container {
+  margin-top: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.resume-text-field,
+.synonym-text-field{
+  font-size: 1.5rem;
+  border-radius: 15px;
+  padding-top: 0.3rem;
+  padding-left: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+.save-resume-text-field {
+  border-radius: 15px;
+  padding-top: 0.3rem;
+  padding-left: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+.impressed-button,
+.search-synonym-button,
+.save-resume-file,
+.not-impressive-button {
+  border-radius: 15px;
+  border-style: inset;
+}
+
+.impressed-button:hover {
+  border-style: inset;
+}
+
+.save-resume-bullet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 5;
 }

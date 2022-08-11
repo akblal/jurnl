@@ -88,40 +88,40 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
   }
 
   const handleNewBullets = (event) => {
-    console.log('loading new wwall...')
     setClickedSave(true);
   }
 
   return (
-    <div>
-      <h2 className= 'submit-entry-title'>List Your Spectacular Achievement</h2>
-      <div className= 'submit-entry-container'>
-        <input value= {bulletPoint} onChange= {handleBulletPoint} placeholder= 'Awesome Idea Here' size="50" className= 'resume-text-field'></input>
-        <button onClick= {handleSubmitPoint} disabled = {!validBullet}>I Am Very Impressed!</button>
-      </div>
-      <h2 className= "submit-synonym-title">Can't Think Of The Action Word? </h2>
-      <div className= 'thesaurus-entry-container'>
-        <input value= {findSynonym} onChange= {handleFindSynonym} placeholder= 'Present Tense Only!' size="30" className= 'synonym-text-field'></input>
-        <button onClick= {handleSubmitSynonym} disabled = {!validSynonym}>Leggo!</button>
-        {console.log (mostSimilar, 'here are the words')}
-      </div>
-      <div className= 'similar-and-synonym-list'>
-        {(mostSimilar.length > 0) ?
-          <div>
-            <div className= 'synonym-results'>How About These? : </div>
-            <div className= 'synonym-results'>{mostSimilar}</div>
-          </div>
-          : null}
-          {(mostSimilar.length === 0 && synonymButtonClick > 0) ?
+    <div className= 'overall-resume-container'>
+      <div className= 'resume-thesaurus-input'>
+        <h2 className= 'submit-entry-title'>List Your Spectacular Achievement</h2>
+        <div className= 'submit-entry-container'>
+          <input value= {bulletPoint} onChange= {handleBulletPoint} placeholder= 'Awesome Idea Here' size="50" className= 'resume-text-field'></input>
+          <button onClick= {handleSubmitPoint} disabled = {!validBullet} className='impressed-button'>I Am Very Impressed!</button>
+        </div>
+        <h2 className= "submit-synonym-title">Can't Think Of The Action Word? </h2>
+        <div className= 'thesaurus-entry-container'>
+          <input value= {findSynonym} onChange= {handleFindSynonym} placeholder= 'Present Tense Only!' size="30" className= 'synonym-text-field'></input>
+          <button onClick= {handleSubmitSynonym} disabled = {!validSynonym} className= 'search-synonym-button'>Leggo!</button>
+        </div>
+        <div className= 'similar-and-synonym-list'>
+          {(mostSimilar.length > 0) ?
             <div>
-              <div className= 'synonym-results'>Sorry, there were no results... </div>
+              <h4 className= 'synonym-results-top-line'>How About These? </h4>
+              <h4 className= 'synonym-results'>{mostSimilar}</h4>
             </div>
             : null}
+            {(mostSimilar.length === 0 && synonymButtonClick > 0) ?
+              <div>
+                <h4 className= 'synonym-results-top-line'>Sorry, there were no results... </h4>
+              </div>
+              : null}
+        </div>
       </div>
       <div className= 'save-resume-bullet-container'>
-        <input value= {documentNameResume} onChange= {handleFileName} placeholder= 'Save all Bullets into Document' size= '50'></input>
-        {clickedSave ? <button onClick={handleSave}>Save into File!</button> :
-        <button onClick= {handleNewBullets}>Load New Wall</button>}
+        <input value= {documentNameResume} onChange= {handleFileName} placeholder= 'Save all Bullets into Document' size= '50' className= 'save-resume-text-field'></input>
+        {clickedSave ? <button onClick={handleSave} className= 'save-resume-file'>Save into File!</button> :
+        <button onClick= {handleNewBullets} className= 'save-resume-file'>Load New Wall</button>}
       </div>
     </div>
   )
