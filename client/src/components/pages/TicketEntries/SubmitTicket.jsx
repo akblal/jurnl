@@ -80,7 +80,6 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets,
 
   const handleNewProject = (event) => {
     setCompletedProject(true);
-    console.log(projectName);
   }
 
   return (

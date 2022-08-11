@@ -11,6 +11,7 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
   const [synonym, setSynonym] = useState('');
   const [synonymButtonClick, setSynonymButtonClick] = useState(0);
   const [documentNameResume, setDocumentNameResume] = useState('');
+  const [clickedSave, setClickedSave] = useState(true);
 
   const handleBulletPoint = (event) => {
     setBulletPoint(event.target.value);
@@ -68,19 +69,27 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
   }
 
   const handleSave = (event) => {
-    console.log(documentNameResume);
-    console.log(savedBullets, 'saved bullets')
-    axios.post('/saveResumeFile', {
-      documentName: documentNameResume,
-      bulletPoints: savedBullets,
-    })
-      .then(() => {
-        axios.delete('/deleteAllBullets')
+    if (documentNameResume) {
+      setClickedSave(false);
+      axios.post('/saveResumeFile', {
+        documentName: documentNameResume,
+        bulletPoints: savedBullets,
       })
-      .then(() => {
-        setSavedBullets([])
-      })
-      .catch((err) => console.log(err))
+        .then(() => {
+          axios.delete('/deleteAllBullets')
+        })
+        .then(() => {
+          setSavedBullets([])
+        })
+        .catch((err) => console.log(err))
+    } else {
+      alert ('Please type in name of document before saving it!')
+    }
+  }
+
+  const handleNewBullets = (event) => {
+    console.log('loading new wwall...')
+    setClickedSave(true);
   }
 
   return (
@@ -111,7 +120,8 @@ function SubmitEntry ({ savedBullets, setSavedBullets }) {
       </div>
       <div className= 'save-resume-bullet-container'>
         <input value= {documentNameResume} onChange= {handleFileName} placeholder= 'Save all Bullets into Document' size= '50'></input>
-        <button onClick={handleSave}>Save into File</button>
+        {clickedSave ? <button onClick={handleSave}>Save into File!</button> :
+        <button onClick= {handleNewBullets}>Load New Wall</button>}
       </div>
     </div>
   )
