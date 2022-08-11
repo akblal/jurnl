@@ -247,6 +247,10 @@ body {
   border-style: inset;
 }
 
+.active-tickets-entry {
+  flex-grow: 100000;
+}
+
 .active-tickets-entry,
 .completed-tickets-entry {
   padding: 0.5rem;
