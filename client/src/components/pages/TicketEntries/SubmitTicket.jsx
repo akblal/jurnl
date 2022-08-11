@@ -58,8 +58,6 @@ function SubmitTicket ({submittedTickets, setSubmittedTickets, completedTickets,
   const handleCompletedProject = (event) => {
     if (projectName.length) {
       setCompletedProject(false);
-      console.log (submittedTickets, 'to do tix');
-      console.log (completedTickets, 'completed tix');
       axios.post('/completedProject', {
         projectName: projectName,
         activeTickets: submittedTickets,
