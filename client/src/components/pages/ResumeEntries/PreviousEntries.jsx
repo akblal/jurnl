@@ -22,7 +22,7 @@ function PreviousEntries ({ savedBullets, setSavedBullets }) {
 
   return (
     <div className= 'wall-of-awesomeness-overall-container'>
-      {savedBullets.length > 0 ? <h1>Great Wall of Awesomeness</h1> : null}
+      {savedBullets.length > 0 ? <h1 className= 'wall-of-awesome-title'>Great Wall of Awesomeness</h1> : null}
       {savedBullets.map((bulletPoint) => {
         return (
           <div className = 'wall-of-awesomeness-container'>
